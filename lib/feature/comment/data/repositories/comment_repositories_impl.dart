@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:simple_get_api_task_wc/core/failure/failure.dart';
 import 'package:simple_get_api_task_wc/feature/comment/data/models/comment_model.dart';
@@ -13,8 +14,12 @@ class CommentRepositoriesImpl extends CommentRepositories {
     try {
       final commentModels = await apiServices.getComment();
       return right(commentModels);
-    } catch (e) {
-      return left(Failure(message: e.toString()));
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionError) {
+        return left(Failure(message: "Internet Off Please On Internet......"));
+      } else {
+        return left(Failure(message: e.toString()));
+      }
     }
   }
 }

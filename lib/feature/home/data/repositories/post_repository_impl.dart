@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:simple_get_api_task_wc/core/failure/failure.dart';
 import 'package:simple_get_api_task_wc/feature/home/data/models/post_models.dart';
@@ -14,8 +15,12 @@ class PostRepositoryImpl implements PostRepository {
     try {
       final postModels = await apiServices.getData();
       return right(postModels);
-    } on Exception catch (e) {
-      return left(Failure(message: e.toString()));
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.connectionError) {
+        return left(Failure(message: "Internet Off Please On Internet......"));
+      } else {
+        return left(Failure(message: e.toString()));
+      }
     }
   }
 }

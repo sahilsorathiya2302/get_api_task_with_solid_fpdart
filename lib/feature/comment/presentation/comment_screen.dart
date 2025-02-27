@@ -6,6 +6,7 @@ import 'package:simple_get_api_task_wc/core/component/custom_text.dart';
 import 'package:simple_get_api_task_wc/core/constraints/app_icons.dart';
 import 'package:simple_get_api_task_wc/core/constraints/app_string.dart';
 import 'package:simple_get_api_task_wc/core/routes/app_routes_name.dart';
+import 'package:simple_get_api_task_wc/core/utils/functional_component.dart';
 import 'package:simple_get_api_task_wc/feature/comment/presentation/cubit/comment_cubit.dart';
 import 'package:simple_get_api_task_wc/feature/comment/presentation/cubit/comment_state.dart';
 import 'package:simple_get_api_task_wc/feature/comment/presentation/widget/comment_info_widget.dart';
@@ -24,6 +25,7 @@ class CommentScreen extends StatelessWidget {
           icons: AppIcons.notesIcon,
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             BlocBuilder<CommentCubit, CommentState>(
               builder: (context, state) {
@@ -36,9 +38,12 @@ class CommentScreen extends StatelessWidget {
                     state: state,
                   );
                 } else if (state is CommentErrorState) {
-                  return CustomText(text: state.errorMessage);
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    FunctionalComponent.showSnakabar(AppString.error, state.errorMessage);
+                  });
+                  return const Center(child: Text(AppString.aeo));
                 }
-                return const CustomText(text: "ERROR");
+                return const CustomText(text: AppString.error);
               },
             ),
           ],
