@@ -46,47 +46,6 @@ dev_dependencies:
   json_serializable: ^6.6.1
 ```
 
-## API Service (Retrofit + Dio)
-Example of API Service implementation:
-```dart
-@RestApi(baseUrl: "https://jsonplaceholder.typicode.com/")
-abstract class ApiService {
-  factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
-
-  @GET("/posts")
-  Future<List<PostModel>> getPosts();
-}
-```
-
-## Dependency Injection (get_it)
-Setup `get_it` for dependency injection:
-```dart
-final getIt = GetIt.instance;
-
-void setupLocator() {
-  getIt.registerLazySingleton<ApiService>(() => ApiService(getIt<Dio>()));
-  getIt.registerLazySingleton<Dio>(() => Dio());
-}
-```
-
-## Setup & Run
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-username/get_api_task_with_solid_fpdart.git
-   ```
-2. Navigate to the project directory:
-   ```sh
-   cd get_api_task_with_solid_fpdart
-   ```
-3. Install dependencies:
-   ```sh
-   flutter pub get
-   ```
-4. Run the project:
-   ```sh
-   flutter run
-   ```
-
 ---
 ### Author
 Developed by **Sahil Sorathiya**
