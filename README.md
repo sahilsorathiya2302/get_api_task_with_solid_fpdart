@@ -87,9 +87,6 @@ void setupLocator() {
    flutter run
    ```
 
-## Contribution
-Feel free to contribute by opening issues or submitting pull requests. 🚀
-
 ---
 ### Author
 Developed by **Sahil Sorathiya**
