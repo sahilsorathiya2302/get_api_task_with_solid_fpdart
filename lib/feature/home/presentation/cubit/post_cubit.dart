@@ -1,5 +1,5 @@
-// presentation/cubit/post_cubit.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_get_api_task_wc/core/usecase/use_case.dart';
 import 'package:simple_get_api_task_wc/feature/home/data/models/post_models.dart';
 import 'package:simple_get_api_task_wc/feature/home/domain/use_cases/get_posts_use_case.dart';
 
@@ -15,7 +15,7 @@ class PostCubit extends Cubit<PostState> {
   Future<void> getPosts() async {
     emit(PostsLoadingState());
 
-    final result = await getPostsUseCase();
+    final result = await getPostsUseCase.call(NoParams());
 
     result.fold(
       (failure) => emit(PostsErrorState(errorMessage: failure.message)),

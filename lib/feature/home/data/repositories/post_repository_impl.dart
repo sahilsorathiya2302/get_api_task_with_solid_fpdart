@@ -1,23 +1,24 @@
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
+import 'package:simple_get_api_task_wc/core/constraints/app_string.dart';
 import 'package:simple_get_api_task_wc/core/failure/failure.dart';
 import 'package:simple_get_api_task_wc/feature/home/data/models/post_models.dart';
+import 'package:simple_get_api_task_wc/feature/home/data/repositories/post_remote_repo.dart';
 import 'package:simple_get_api_task_wc/feature/home/domain/repositories/post_repositories.dart';
-import 'package:simple_get_api_task_wc/services/api_services.dart';
 
 class PostRepositoryImpl implements PostRepository {
-  final ApiServices apiServices;
+  final PostImpRemoteRepo postImpRemoteRepo;
 
-  PostRepositoryImpl({required this.apiServices});
+  PostRepositoryImpl({required this.postImpRemoteRepo});
 
   @override
   Future<Either<Failure, List<PostModel>>> getPosts() async {
     try {
-      final postModels = await apiServices.getData();
+      final postModels = await postImpRemoteRepo.getPostData();
       return right(postModels);
     } on DioException catch (e) {
       if (e.type == DioExceptionType.connectionError) {
-        return left(Failure(message: "Internet Off Please On Internet......"));
+        return left(Failure(message: AppString.internetError));
       } else {
         return left(Failure(message: e.toString()));
       }

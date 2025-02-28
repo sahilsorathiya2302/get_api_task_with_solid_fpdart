@@ -6,4 +6,5 @@ class AppString {
   static const String ndf = "No Data Found";
   static const String aeo = "An error occurred!";
   static const String error = "ERROR";
+  static const String internetError = "Internet Off Please On Internet......";
 }

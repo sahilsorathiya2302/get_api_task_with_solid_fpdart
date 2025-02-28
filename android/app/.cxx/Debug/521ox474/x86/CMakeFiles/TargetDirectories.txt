@@ -1,0 +1,2 @@
+C:/Users/DELL/StudioProjects/simple_get_api_task_wc/android/app/.cxx/Debug/521ox474/x86/CMakeFiles/edit_cache.dir
+C:/Users/DELL/StudioProjects/simple_get_api_task_wc/android/app/.cxx/Debug/521ox474/x86/CMakeFiles/rebuild_cache.dir
