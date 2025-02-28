@@ -1,8 +1,8 @@
-import 'package:simple_get_api_task_wc/feature/home/data/models/post_models.dart';
+import 'package:simple_get_api_task_wc/feature/home/domain/entities/post.dart';
 import 'package:simple_get_api_task_wc/services/api_services.dart';
 
 abstract interface class PostRemoteRepo {
-  Future<List<PostModel>> getPostData();
+  Future<List<Post>> getPostData();
 }
 
 class PostImpRemoteRepo extends PostRemoteRepo {
@@ -10,7 +10,7 @@ class PostImpRemoteRepo extends PostRemoteRepo {
 
   PostImpRemoteRepo({required this.apiServices});
   @override
-  Future<List<PostModel>> getPostData() {
+  Future<List<Post>> getPostData() {
     return apiServices.getData();
   }
 }

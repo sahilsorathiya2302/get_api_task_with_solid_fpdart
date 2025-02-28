@@ -33,13 +33,13 @@ Future<void> setupDependencies() async {
   getIt.registerLazySingleton(
     () => CommentImpRemoteRepo(apiServices: getIt()),
   );
-  getIt.registerLazySingleton<CommentRepositories>(
-    () => CommentRepositoriesImpl(
+  getIt.registerSingleton<CommentRepositories>(
+    CommentRepositoriesImpl(
       commentImpRemoteRepo: getIt(),
     ),
   );
   getIt.registerLazySingleton<CommentUseCases>(
-    () => CommentUseCases(getIt()),
+    () => CommentUseCases(getIt<CommentRepositories>()),
   );
   getIt.registerLazySingleton<CommentCubit>(
     () => CommentCubit(getIt<CommentUseCases>()),

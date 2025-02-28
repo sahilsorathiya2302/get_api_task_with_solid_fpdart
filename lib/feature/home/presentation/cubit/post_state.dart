@@ -7,7 +7,7 @@ class PostsInitialState extends PostState {}
 class PostsLoadingState extends PostState {}
 
 class PostsLoadedState extends PostState {
-  List<PostModel> post;
+  List<Post> post;
 
   PostsLoadedState({required this.post});
 }
